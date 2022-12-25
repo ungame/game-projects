@@ -18,7 +18,7 @@ class Keyboard
     public:
         bool Listen(SDL_Event* event);
         bool KeyPressed(SDL_Scancode key);
-
+        void Debug();
 };
 
 #endif

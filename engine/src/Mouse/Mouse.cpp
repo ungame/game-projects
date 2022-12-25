@@ -49,3 +49,28 @@ bool Mouse::ButtonPressed(MouseButton button)
 
     return false;
 }
+
+void Mouse::Debug()
+{
+    if (Mouse::Instance()->ButtonPressed(MouseButton::Right))
+    {
+        SDL_Log("[MOUSE_BUTTON_RIGHT]");
+    }
+    if (Mouse::Instance()->ButtonPressed(MouseButton::Left))
+    {
+        SDL_Log("[MOUSE_BUTTON_LEFT]");
+    }
+    if (Mouse::Instance()->ButtonPressed(MouseButton::Middle))
+    {
+        SDL_Log("[MOUSE_BUTTON_MIDDLE]");
+    }
+    if (Mouse::Instance()->ButtonPressed(MouseButton::X1))
+    {
+        SDL_Log("[MOUSE_BUTTON_X1]");
+    }
+    if (Mouse::Instance()->ButtonPressed(MouseButton::X2))
+    {
+        SDL_Log("[MOUSE_BUTTON_X2]");
+    }
+}
+

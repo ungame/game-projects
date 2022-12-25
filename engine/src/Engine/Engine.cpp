@@ -8,7 +8,11 @@
 Engine* Engine::_instance = nullptr;
 
 Engine::Engine()
-{}
+{
+    SDL_Log("Engine initialized!");
+    // core init
+    Core::Instance();
+}
 
 void Engine::Run()
 {
@@ -29,5 +33,7 @@ void Engine::Run()
 
 Engine::~Engine()
 {
+    Game::Instance()->Over();
     Core::Quit();
+    SDL_Log("Engine quit.");
 }

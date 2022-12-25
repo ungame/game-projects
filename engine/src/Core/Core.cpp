@@ -37,7 +37,7 @@ Core::Core()
         exit(EXIT_FAILURE);
     }
 
-    SDL_Log("Engine initialized!");
+    SDL_Log("Core initialized!");
 }
 
 Core::~Core()
@@ -46,5 +46,5 @@ Core::~Core()
     SDL_DestroyWindow(_window);
     IMG_Quit();
     SDL_Quit();
-    SDL_Log("Engine quit.");
+    SDL_Log("Core quit.");
 }

@@ -29,6 +29,7 @@ class Mouse
         bool Listen(SDL_Event* event);
         SDL_Point GetCursor() { return _cursor; }
         bool ButtonPressed(MouseButton button);
+        void Debug();
 };
 
 #endif

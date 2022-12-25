@@ -26,3 +26,23 @@ bool Keyboard::KeyPressed(SDL_Scancode key)
 {
     return _keyboard[key] == 1;
 }
+
+void Keyboard::Debug()
+{
+    if (Keyboard::Instance()->KeyPressed(SDL_SCANCODE_UP))
+    {
+        SDL_Log("[UP]");
+    }
+    if (Keyboard::Instance()->KeyPressed(SDL_SCANCODE_RIGHT))
+    {
+        SDL_Log("[RIGHT]");
+    }
+    if (Keyboard::Instance()->KeyPressed(SDL_SCANCODE_LEFT))
+    {
+        SDL_Log("[LEFT]");
+    }
+    if (Keyboard::Instance()->KeyPressed(SDL_SCANCODE_DOWN))
+    {
+        SDL_Log("[DOWN]");
+    }
+}
