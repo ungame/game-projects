@@ -4,6 +4,7 @@
 #include "Mouse.hpp"
 #include "Time.hpp"
 #include "Color.hpp"
+#include "Settings.hpp"
 
 #include <SDL2/SDL.h>
 
@@ -20,8 +21,27 @@ Game::Game()
 
 void Game::Update(float deltaTime)
 {
-    Keyboard::Instance()->Debug();
-    Mouse::Instance()->Debug();
+    SDL_FPoint direction = { 0, 0 };
+
+    if (Keyboard::Instance()->KeyPressed(SDL_SCANCODE_LEFT))
+        direction.x = -1;
+    
+    if (Keyboard::Instance()->KeyPressed(SDL_SCANCODE_RIGHT))
+        direction.x = 1;
+
+    if (Keyboard::Instance()->KeyPressed(SDL_SCANCODE_UP))
+        direction.y = -1;
+
+    if (Keyboard::Instance()->KeyPressed(SDL_SCANCODE_DOWN))
+        direction.y = 1;
+
+    float x = _object->GetX() + DEFAULT_SPEED_X * direction.x;
+    float y = _object->GetY() + DEFAULT_SPEED_Y * direction.y;
+    _object->SetX(x);
+    _object->SetY(y);
+
+    //Keyboard::Instance()->Debug();
+    //Mouse::Instance()->Debug();
 }
 
 void Game::Draw()

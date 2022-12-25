@@ -5,4 +5,9 @@
 #define DEFAULT_SCREEN_HEIGHT 600
 #define DEFAULT_SCREEN_TITLE "Engine v0.0.1"
 
+#define DEFAULT_FPS 1000.0/60.0
+
+#define DEFAULT_SPEED_X 2.0F
+#define DEFAULT_SPEED_Y 2.0F
+
 #endif

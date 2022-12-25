@@ -1,4 +1,5 @@
 #include "Core.hpp"
+#include "Settings.hpp"
 #include "Engine.hpp"
 #include "Input.hpp"
 #include "Game.hpp"
@@ -26,6 +27,8 @@ void Engine::Run()
 
         Game::Instance()->Update(0.0f);
         Game::Instance()->Draw();
+
+        SDL_Delay(DEFAULT_FPS);
     }
 
     delete _instance;
