@@ -3,6 +3,8 @@
 #include "Engine.hpp"
 #include "Input.hpp"
 #include "Game.hpp"
+#include "Time.hpp"
+#include "Timer.hpp"
 
 #include <SDL2/SDL.h>
 
@@ -18,17 +20,38 @@ Engine::Engine()
 void Engine::Run()
 {
     bool quit = false;
-
+    
+    float deltaTime = Timer::Instance()->GetDeltaTime();
+    
+    Time* start = new Time(); 
+    int frameCounter = 0;
 
     while(!quit)
     {
+
         if (!Input::Instance()->Listen())
             quit = true;
 
-        Game::Instance()->Update(0.0f);
+
+        deltaTime = Timer::Instance()->GetDeltaTime();
+
+        Game::Instance()->Update(deltaTime);
         Game::Instance()->Draw();
 
-        SDL_Delay(DEFAULT_FPS);
+        //SDL_Delay(1000/DEFAULT_FPS_SIMULATION);
+
+        Timer::Instance()->Tick();
+
+        if (Time::Since(start) >= 1.0)
+        {
+            SDL_Log("DeltaTime=%f, FPS=%d", deltaTime, frameCounter);
+            start = new Time();
+            frameCounter = 0;
+        }
+        else
+        {
+            frameCounter++;
+        }
     }
 
     delete _instance;

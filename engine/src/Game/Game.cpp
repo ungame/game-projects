@@ -21,24 +21,45 @@ Game::Game()
 
 void Game::Update(float deltaTime)
 {
-    SDL_FPoint direction = { 0, 0 };
+    _object->SetDirectionX(0);
+    _object->SetDirectionY(0);
 
     if (Keyboard::Instance()->KeyPressed(SDL_SCANCODE_LEFT))
-        direction.x = -1;
+       _object->SetDirectionX(BACKWARD_DIRECTION); 
     
     if (Keyboard::Instance()->KeyPressed(SDL_SCANCODE_RIGHT))
-        direction.x = 1;
+        _object->SetDirectionX(FORWARD_DIRECTION);
 
     if (Keyboard::Instance()->KeyPressed(SDL_SCANCODE_UP))
-        direction.y = -1;
+        _object->SetDirectionY(UPWARD_DIRECTION);
 
     if (Keyboard::Instance()->KeyPressed(SDL_SCANCODE_DOWN))
-        direction.y = 1;
+        _object->SetDirectionY(DOWNWARD_DIRECTION);
 
-    float x = _object->GetX() + DEFAULT_SPEED_X * direction.x;
-    float y = _object->GetY() + DEFAULT_SPEED_Y * direction.y;
+    float x = _object->GetX() + (DEFAULT_SPEED_X * deltaTime * _object->GetDirectionX());
+    float y = _object->GetY() + (DEFAULT_SPEED_Y * deltaTime * _object->GetDirectionY());
     _object->SetX(x);
     _object->SetY(y);
+
+    int right = _object->GetX() + _object->GetWidth();
+    
+    if (right >= DEFAULT_SCREEN_WIDTH)
+        _object->SetX(_object->GetX() - (right - DEFAULT_SCREEN_WIDTH));
+
+
+    if (_object->GetX() < 0)
+        _object->SetX(0);
+
+
+    int bottom = _object->GetY() + _object->GetHeight();
+    if (bottom >= DEFAULT_SCREEN_HEIGHT)
+        _object->SetY(_object->GetY() - (bottom - DEFAULT_SCREEN_HEIGHT));
+
+    if (_object->GetY() < 0)
+        _object->SetY(0);
+
+
+    SDL_Log("X=%f, Y=%f", _object->GetX(), _object->GetY());
 
     //Keyboard::Instance()->Debug();
     //Mouse::Instance()->Debug();

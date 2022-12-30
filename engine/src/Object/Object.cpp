@@ -9,6 +9,7 @@ Object::Object(int width, int height, float x, float y, Color* c)
     _width = width;
     _height = height;
     _position = SDL_FPoint{x, y};
+    _direction = SDL_Point{ 0, 0 };
     _color = c;
 }
 
